@@ -40,7 +40,7 @@ client.connect(PORT, HOST, function() {
 client.on('data', function(data) {
 
     console.log('DATA: ' + data);
-	if (data == 2 && flying == false){
+	if (data == 1 && flying == false){
 		quad.flatTrim();
          quad.takeoff();
          console.log('takeoff');
@@ -50,22 +50,33 @@ client.on('data', function(data) {
 	//else if (data == 2 && flying==true && count<3){
 	//count=count+1;
 //}
-	else if (data == 4 && flying== true){ 
+	else if (data == 2 && flying== true){ 
 				quad.land();
                 flying = false;
                 console.log('landing');
 				//count=0;
 } 
-else if (data == 1 && flying== true){ 
-				quad.down({ steps: 5 });
-                console.log('down');
+else if (data == 3 && flying== true){ 
+				quad.left({ steps: 5 });
+                console.log('left');
                 //count=0;
 }   
-else if (data == 3 && flying== true){ 
-				quad.up({ steps: 5 });
+else if (data == 4 && flying== true){ 
+				quad.right({ steps: 5 });
+                console.log('right');
+                //count=0;
+}
+else if (data == 5 && flying== true){ 
+                quad.up({ steps: 5 });
                 console.log('up');
                 //count=0;
 }
+else if (data == 6 && flying== true){ 
+                quad.down({ steps: 5 });
+                console.log('down');
+                //count=0;
+}
+
  else quad.hover();
     // Close the client socket completely
     //client.destroy();
